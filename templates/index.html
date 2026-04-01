@@ -4,19 +4,17 @@
     <title>AI Task Planner</title>
 </head>
 <body>
-
     <h1>AI Task Planner</h1>
 
     <form method="POST">
-    <textarea name="tasks" rows="10" cols="50"
-    placeholder="Enter tasks...">{{ tasks }}</textarea><br><br>
-    <button type="submit">Run</button>
-</form>
+        <label for="tasks">Enter your tasks (one or multiple tasks separated by commas or new lines):</label><br><br>
+        <textarea name="tasks" rows="6" cols="60" placeholder="e.g. Finish report, Prepare slides, Buy groceries">{{ tasks }}</textarea><br><br>
+        <input type="submit" value="Generate Final Plan">
+    </form>
 
-{% if result %}
+    {% if result %}
     <h2>Final Plan</h2>
     <pre>{{ result }}</pre>
-{% endif %}
-
+    {% endif %}
 </body>
 </html>

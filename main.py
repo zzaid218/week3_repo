@@ -6,10 +6,10 @@ from langchain_core.output_parsers import StrOutputParser
 
 load_dotenv()
 
-# 🤖 2. Initialize Model
+# 2. Initialize Model
 llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
 
-# 🧠 3. Define the Prompt
+# 3. Define the Prompt
 summary_prompt = PromptTemplate.from_template(
     """You are a precise summarization assistant.
     Summarize the text below concisely without repeating ideas.
@@ -20,11 +20,11 @@ summary_prompt = PromptTemplate.from_template(
     SUMMARY:"""
 )
 
-# 🔗 4. Create the Chain (The LCEL way)
+# 4. Create the Chain (The LCEL way)
 # This pipes the prompt into the model, then parses the output into a clean string
 chain = summary_prompt | llm | StrOutputParser()
 
-# 🚀 5. Run the Chain
+# 5. Run the Chain
 text_to_summarize = """
 Artificial intelligence is rapidly changing the world. 
 It helps automate tasks and improves decision making. 

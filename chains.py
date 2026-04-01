@@ -1,8 +1,8 @@
 import os
 from dotenv import load_dotenv
 
-# Load .env file
-load_dotenv()
+load_dotenv()  
+
 from flask import Flask, render_template, request
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import PromptTemplate
@@ -47,7 +47,7 @@ Generate a single output including:
    - At the end of the summary, add a line exactly like this:
      "Word Count of Summary: X"
    - Replace X with the number of words in the summary.
-   - Also add a short description: 
+   - Also add a short description:
      "This number represents the total words in the summary, covering all tasks in brief."
 
 2. Categories: List each task under Work or Personal.
@@ -74,7 +74,6 @@ Ensure the word count line is always included exactly as shown above.
 """)
 task_chain = task_prompt | llm
 
-
 # Flask Route
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -83,17 +82,16 @@ def index():
     tasks = ""
 
     if request.method == "POST":
-     tasks = request.form["tasks"]
+        tasks = request.form["tasks"]
 
-    # Only generate final plan (summary, categories, priorities inside it)
-     result = task_chain.invoke({"tasks": tasks}).content
+        # Only generate final plan (summary, categories, priorities inside it)
+        result = task_chain.invoke({"tasks": tasks}).content
 
     return render_template(
         "index.html",
         tasks=tasks,
         result=result
     )
-
 
 if __name__ == "__main__":
     app.run(debug=True)
